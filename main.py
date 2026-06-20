@@ -1,5 +1,6 @@
 from yt_dlp import YoutubeDL
-
+download_path_audio = r"C:\abdullah\snaptube\download\SnapTube Audio"
+download_path_videos = r"C:\abdullah\snaptube\download\SnapTube Video"
 while True:
     print("\n1. Download Video")
     print("2. Download Audio")
@@ -12,10 +13,13 @@ while True:
         break
 
     url = input("Enter the URL: ")
-
+    
+    download_path_videos = r"C:\abdullah\snaptube\download\SnapTube Video"
+    
     if choice == "1":
         ydl_opts = {
-            "outtmpl": "%(title)s.%(ext)s"
+           "format": "bestvideo+bestaudio/best",
+            "outtmpl": download_path_videos + r"\%(title)s.%(ext)s"
         }
 
         print("Starting download...")
@@ -24,7 +28,9 @@ while True:
             ydl.download([url])
 
         print("Download completed!")
+        
 
+    
     elif choice == "2":
         audio_opts = {
             "format": "bestaudio/best",
@@ -33,7 +39,7 @@ while True:
                 "preferredcodec": "mp3",
                 "preferredquality": "192"
             }],
-            "outtmpl": "%(title)s.%(ext)s"
+            "outtmpl":download_path_audio + r"\%(title)s.%(ext)s"
         }
 
         print("Starting download...")
